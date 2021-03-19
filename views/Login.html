@@ -34,8 +34,9 @@
             ><input
               id="email"
               placeholder="Email"
-              type="text"
+              type="email"
               name="email"
+              required
               class="form-control wrapper"
             /><span id="emailError" class="help-block"></span>
           </div>
@@ -45,12 +46,13 @@
               id="password"
               placeholder="Password"
               type="password"
+              required
               name="password"
               class="form-control wrapper"
             /><span id="passwordError" class="help-block"></span>
           </div>
           <div>
-            <span class="help-block"></span>
+            <span id="loginError" class="help-block"></span>
             <div class="wrapper btn-toolbar doubleButtons">
               <button id="loginButton" class="btn btn-primary">LogIn</button>
             </div>
