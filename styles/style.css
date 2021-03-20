@@ -236,6 +236,36 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     appearance: none;
 }
 
+.addButton {
+    display: block;
+    color: #666;
+    width: fit-content;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    background-color: #f3f3f3;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.filter {
+    display: block;
+    padding: 14px 16px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    color: #666;
+    width: fit-content;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    background-color: #f3f3f3;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
 /*END OF FORM CSS*/
 
 /*Table Styling*/
