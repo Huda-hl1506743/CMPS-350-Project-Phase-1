@@ -2,6 +2,7 @@ import * as userRepository from './userRepository.js';
 import * as paymentRepository from './paymentRepository.js';
 import * as bussRepository from './bussRepository.js';
 import initData from './dataLoader.js';
+
 //SELECT DOM
 const headDiv = document.querySelector("#navBar");
 const bodyDiv = document.querySelector("#mainBody");
@@ -14,6 +15,7 @@ let bussServicesButton = null;
 let receivedPaymentsReportButton = null;
 let pendingPaymentsReportButton = null;
 let duePaymentsButton = null;
+let logoutButton = null;
 
 //User Session Object
 let User = {
@@ -30,13 +32,17 @@ if (user == false) {
   userRepository.setFirstTime(); //Set that website has ben loaded.
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Init Function:
+
 let init = () => {
   User = userRepository.getLoginStatus();
 
   if (User == false) {
     //User is not loggedIn
   } else {
-    if (User == 'principle') {
+    if (User.type == 'principle') {
+      //Setting Principle NavBar
       headDiv.innerHTML =
         `<div id="navBar">
             <div>
@@ -77,18 +83,55 @@ let init = () => {
           </div>`;
       buildPrincipleNavBar();
     } else {
-
+      //Setting Parents NavBar
+      headDiv.innerHTML =
+        `<div id="navBar">
+          <div>
+            <ul>
+              <li style="float: left">
+                <a style="cursor: pointer" class="TITLE">Payment Management</a>
+              </li>
+              <li style="float: left">
+                <a style="cursor: pointer" id="pendingPayments">Pending Payments</a>
+              </li>
+              <li style="float: left">
+                <a style="cursor: pointer" id="bussServices">Buss Service</a>
+              </li>
+              <li style="float: right">
+                <a style="cursor: pointer" id="logout">Logout</a>
+              </li>
+              <li style="float: right"><a id="userEmail"></a></li>
+            </ul>
+          </div>
+          <div align="center" id="welcome">
+            
+          </div>
+        </div>`;
+      buildParentNavBar();
     }
+    logoutButton = document.querySelector('#logout');
+    logoutButton.addEventListener('click', function () {
+      userRepository.setSession({
+        isLoggedIn: false,
+        email: '',
+        type: ''
+      });
+      location.reload();
+    });
   }
 }
 
-let buildPrincipleNavBar = () => {
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Principle Functionality
+
+function buildPrincipleNavBar() {
   //NAVBAR BUTTONS
   pendingPaymentsButton = document.querySelector('#pendingPayments');
   bussServicesButton = document.querySelector('#bussServices');
   receivedPaymentsReportButton = document.querySelector('receivedPaymentsReport');
   pendingPaymentsReportButton = document.querySelector('pendingPaymentsReport');
   duePaymentsButton = document.querySelector('duePayments');
+
 
   pendingPaymentsButton.addEventListener("click", buildPendingPayments);
   bussServicesButton.addEventListener("click", buildBussServicePayment);
@@ -224,6 +267,58 @@ function buildBussServicePayment() {
     rejectBtn.addEventListener('click', () => { rejectRequest(request.id) });
     addCommentBtn.addEventListener('click', () => { addComment(request.id) });
   }))
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Parents Functionality
+
+function buildParentNavBar() {
+  //NAVBAR BUTTONS
+  pendingPaymentsButton = document.querySelector('#pendingPayments');
+  bussServicesButton = document.querySelector('#bussServices');
+
+  pendingPaymentsButton.addEventListener('click', buildParentsPendingPayments);
+}
+
+function buildParentsPendingPayments() {
+  let welcomeMessageDiv = document.querySelector('#welcome');
+  let payments = paymentRepository.getPendingPayments();
+  payments = payments.filter((payment) => { return payment.pending === true });
+
+  let TableRows = payments.map((payment) => `
+    <tr>
+      <td>${payment.parent_name}</td>
+      <td>${payment.parent_email}</td>
+      <td>${payment.student_name}</td>
+      <td>${payment.student_grade}</td>
+      <td>${payment.type === 'default' ? 'Tuition Fee' : 'Buss Service'}</td>
+      <td>${payment.amount}</td>
+    </tr>
+  `);
+
+  welcomeMessageDiv.innerHTML = `
+  <h1 style="text-align: center; color: gray">
+                Welcome To Payment Management
+              </h1>
+              <p style="text-align: center; color: black">
+                Here are the List of Pending Payments
+              </p>
+              <br /><br />
+  `;
+
+  bodyDiv.innerHTML = `
+  <table id="t01">
+    <tr>
+      <th>Parent Name</th>
+      <th>Parent Email</th>
+      <th>Student Name</th>
+      <th>Student Grade</th>
+      <th>Payment Type</th>
+      <th>Payment Amount</th>
+    </tr>
+    ${TableRows.join('')}
+  </table>
+  `;
 }
 
 init();

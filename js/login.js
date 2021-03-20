@@ -14,9 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
 let CheckAuth = () => {
     let loginStatus = userRepository.getLoginStatus();
     if (loginStatus != false) {
-        //Check user type and redirect to his pages
-        if (loginStatus == 'principle')
-            window.location = '../index.html'
+        //redirect to main page
+        window.location = '../index.html'
     }
 };
 

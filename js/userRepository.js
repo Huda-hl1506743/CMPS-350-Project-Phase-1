@@ -23,8 +23,8 @@ export function login(email, password) {
 
 export function getLoginStatus() {
     let user = JSON.parse(localStorage.getItem('session'));
-    if (user)
-        return user.type;
+    if (user.isLoggedIn)
+        return user;
     return false;
 }
 
