@@ -8,15 +8,6 @@ const headDiv = document.querySelector("#navBar");
 const bodyDiv = document.querySelector("#mainBody");
 const footDiv = document.querySelector("#footer");
 
-
-//NAV BUTTONS FOR PRINCIPLE:
-let pendingPaymentsButton = null;
-let bussServicesButton = null;
-let receivedPaymentsReportButton = null;
-let pendingPaymentsReportButton = null;
-let duePaymentsButton = null;
-let logoutButton = null;
-
 //User Session Object
 let User = {
   isLoggedIn: false,
@@ -97,6 +88,9 @@ let init = () => {
               <li style="float: left">
                 <a style="cursor: pointer" id="bussServices">Buss Service</a>
               </li>
+              <li style="float: left">
+                <a style="cursor: pointer" id="paymentHistory">Payment History</a>
+              </li> 
               <li style="float: right">
                 <a style="cursor: pointer" id="logout">Logout</a>
               </li>
@@ -107,9 +101,11 @@ let init = () => {
             
           </div>
         </div>`;
-      buildParentNavBar();
+      buildParentNavBar(User);
     }
-    logoutButton = document.querySelector('#logout');
+
+    //Logout Functionality
+    let logoutButton = document.querySelector('#logout');
     logoutButton.addEventListener('click', function () {
       userRepository.setSession({
         isLoggedIn: false,
@@ -126,11 +122,11 @@ let init = () => {
 
 function buildPrincipleNavBar() {
   //NAVBAR BUTTONS
-  pendingPaymentsButton = document.querySelector('#pendingPayments');
-  bussServicesButton = document.querySelector('#bussServices');
-  receivedPaymentsReportButton = document.querySelector('receivedPaymentsReport');
-  pendingPaymentsReportButton = document.querySelector('pendingPaymentsReport');
-  duePaymentsButton = document.querySelector('duePayments');
+  let pendingPaymentsButton = document.querySelector('#pendingPayments');
+  let bussServicesButton = document.querySelector('#bussServices');
+  let receivedPaymentsReportButton = document.querySelector('receivedPaymentsReport');
+  let pendingPaymentsReportButton = document.querySelector('pendingPaymentsReport');
+  let duePaymentsButton = document.querySelector('duePayments');
 
 
   pendingPaymentsButton.addEventListener("click", buildPendingPayments);
@@ -150,7 +146,7 @@ function buildPendingPayments() {
       <td>${payment.student_name}</td>
       <td>${payment.student_grade}</td>
       <td>${payment.type === 'default' ? 'Tuition Fee' : 'Buss Service'}</td>
-      <td>${payment.amount}</td>
+      <td>${payment.remaining}</td>
     </tr>
   `);
 
@@ -272,27 +268,40 @@ function buildBussServicePayment() {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Parents Functionality
 
-function buildParentNavBar() {
+function buildParentNavBar(user) {
   //NAVBAR BUTTONS
-  pendingPaymentsButton = document.querySelector('#pendingPayments');
-  bussServicesButton = document.querySelector('#bussServices');
+  let pendingPaymentsButton = document.querySelector('#pendingPayments');
+  let bussServicesButton = document.querySelector('#bussServices');
+  let paymentHistoryButton = document.querySelector('#paymentHistory');
 
-  pendingPaymentsButton.addEventListener('click', buildParentsPendingPayments);
+  pendingPaymentsButton.addEventListener('click', () => buildParentsPendingPayments(user));
 }
 
-function buildParentsPendingPayments() {
+function buildParentsPendingPayments(user) {
   let welcomeMessageDiv = document.querySelector('#welcome');
   let payments = paymentRepository.getPendingPayments();
-  payments = payments.filter((payment) => { return payment.pending === true });
+  payments = payments.filter((payment) => { return (payment.pending === true && payment.parent_email === user.email) });
 
   let TableRows = payments.map((payment) => `
-    <tr>
-      <td>${payment.parent_name}</td>
-      <td>${payment.parent_email}</td>
+    <tr id="payment_${payment.id}">
       <td>${payment.student_name}</td>
       <td>${payment.student_grade}</td>
       <td>${payment.type === 'default' ? 'Tuition Fee' : 'Buss Service'}</td>
-      <td>${payment.amount}</td>
+      <td id="amount${payment.id}">${payment.remaining}</td>
+      <td>
+        <div>
+          <input type="number" class="actionWrapper" placeholder="Amount" id="amount_${payment.id}" max="${payment.remaining}" min="1" />
+          <select name="payment_method" id="payment_method${payment.id}" class="form-select">
+            <option value="1">Cash</option>
+            <option value="2">Bank Card</option>
+            <option value="3">Credit Card</option>
+            <option value="4">Cheque</option>
+            <option value="5">Bank Deposit</option>
+          </select>
+          <a class="actionButton btn-primary btn" style="cursor: pointer" id="pay_${payment.id}">Pay</a>
+          <span class="help-block" id="payment_error${payment.id}"></span>
+        </div>
+      </td>
     </tr>
   `);
 
@@ -301,7 +310,7 @@ function buildParentsPendingPayments() {
                 Welcome To Payment Management
               </h1>
               <p style="text-align: center; color: black">
-                Here are the List of Pending Payments
+                Here is the list of your Pending Payments
               </p>
               <br /><br />
   `;
@@ -309,16 +318,44 @@ function buildParentsPendingPayments() {
   bodyDiv.innerHTML = `
   <table id="t01">
     <tr>
-      <th>Parent Name</th>
-      <th>Parent Email</th>
       <th>Student Name</th>
       <th>Student Grade</th>
       <th>Payment Type</th>
-      <th>Payment Amount</th>
+      <th>Remaining Amount</th>
+      <th>Pay Now</th>
     </tr>
     ${TableRows.join('')}
   </table>
   `;
+
+  payments.forEach((payment => {
+    let payButton = document.querySelector('#pay_'.concat(payment.id));
+    let errorSpan = document.querySelector('#payment_error'.concat(payment.id));
+    let row = document.querySelector('#payment_'.concat(payment.id));
+
+    payButton.addEventListener('click', () => {
+      errorSpan.innerHTML = '';
+      let paidAmount = document.getElementById('amount_'.concat(payment.id)).value;
+      let paymentType = document.getElementById('payment_method'.concat(payment.id)).value;
+
+      if (paidAmount > payment.remaining || paidAmount < 1)
+        errorSpan.innerHTML = 'Error Paid Amount Invalid';
+      else {
+        let remainingAmount = payment.remaining - paidAmount;
+        if (remainingAmount == 0) {
+          row.parentNode.removeChild(row);
+          payment.pending = false;
+          payment.remaining = 0;
+        } else {
+          let paymentAmount = document.getElementById('amount'.concat(payment.id));
+          paymentAmount.innerHTML = remainingAmount;
+          errorSpan.innerHTML = 'Payment Success';
+          payment.remaining = remainingAmount;
+        }
+        paymentRepository.addNewPayment(payment, paymentType, paidAmount);
+      }
+    });
+  }))
 }
 
 init();
