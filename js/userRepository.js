@@ -35,3 +35,8 @@ export function firstTime() {
 export function setFirstTime() {
     localStorage.setItem('firstTime', JSON.stringify({ first: true }))
 }
+
+export function getUsers() {
+    let users = JSON.parse(localStorage.getItem('users'));
+    return users || [];
+}
