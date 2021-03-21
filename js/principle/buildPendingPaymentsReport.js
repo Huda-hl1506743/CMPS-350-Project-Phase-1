@@ -36,7 +36,7 @@ function buildPendingPaymentsReport(paymentRepository) {
                   Welcome To Payment Management
                 </h1>
                 <p style="text-align: center; color: black">
-                  Here are the List of Pending Payments
+                  Pending Payments Report
                 </p>
                 <br /><br />
     `;

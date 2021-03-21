@@ -77,7 +77,7 @@ function buildDuoPayments(paymentRepository) {
                   Welcome To Payment Management
                 </h1>
                 <p style="text-align: center; color: black">
-                  Here are the List of Pending Payments
+                  Duo Payments
                 </p>
                 <br /><br />
     `;

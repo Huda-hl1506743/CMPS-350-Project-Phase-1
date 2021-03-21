@@ -69,7 +69,7 @@ function buildParentBusService(user, busRepository, userRepository) {
                   Welcome To Payment Management
                 </h1>
                 <p style="text-align: center; color: black">
-                  Here are the List of Pending Payments
+                  Bus Management
                 </p>
                 <br /><br />
     `;

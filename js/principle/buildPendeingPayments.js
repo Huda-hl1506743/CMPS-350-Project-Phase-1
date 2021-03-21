@@ -6,11 +6,11 @@ const footDiv = document.querySelector("#footer");
 
 
 function buildPendingPayments(paymentRepository) {
-    let welcomeMessageDiv = document.querySelector('#welcome');
-    let payments = paymentRepository.getPendingPayments();
-    payments = payments.filter((payment) => { return payment.pending === true });
+  let welcomeMessageDiv = document.querySelector('#welcome');
+  let payments = paymentRepository.getPendingPayments();
+  payments = payments.filter((payment) => { return payment.pending === true });
 
-    let TableRows = payments.map((payment) => `
+  let TableRows = payments.map((payment) => `
       <tr>
         <td>${payment.parent_name}</td>
         <td>${payment.parent_email}</td>
@@ -22,7 +22,7 @@ function buildPendingPayments(paymentRepository) {
       </tr>
     `);
 
-    welcomeMessageDiv.innerHTML = `
+  welcomeMessageDiv.innerHTML = `
     <h1 style="text-align: center; color: gray">
                   Welcome To Payment Management
                 </h1>
@@ -32,7 +32,7 @@ function buildPendingPayments(paymentRepository) {
                 <br /><br />
     `;
 
-    bodyDiv.innerHTML = `
+  bodyDiv.innerHTML = `
     <table id="t01">
       <tr>
         <th>Parent Name</th>
