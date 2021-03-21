@@ -130,7 +130,7 @@ function buildPrincipleNavBar() {
 
 
   pendingPaymentsButton.addEventListener("click", () => buildPendingPayments(paymentRepository));
-  busServicesButton.addEventListener("click", () => buildBusServicePayment(busRepository));
+  busServicesButton.addEventListener("click", () => buildBusServicePayment(busRepository, paymentRepository));
   receivedPaymentsReportButton.addEventListener('click', () => buildReceivedPaymentsReport(paymentRepository));
   pendingPaymentsReportButton.addEventListener('click', () => buildPendingPaymentsReport(paymentRepository));
   duePaymentsButton.addEventListener('click', () => buildDuoPayments(paymentRepository));

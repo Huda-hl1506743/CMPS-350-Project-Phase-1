@@ -1,11 +1,11 @@
 ////////////////////////////////////////
 //Parents Pending Payments Builder
 function buildParentsPendingPayments(user, paymentRepository) {
-    let welcomeMessageDiv = document.querySelector('#welcome');
-    let payments = paymentRepository.getPendingPayments();
-    payments = payments.filter((payment) => { return (payment.pending === true && payment.parent_email === user.email) });
+  let welcomeMessageDiv = document.querySelector('#welcome');
+  let payments = paymentRepository.getPendingPayments();
+  payments = payments.filter((payment) => { return (payment.pending === true && payment.parent_email === user.email) });
 
-    let TableRows = payments.map((payment) => `
+  let TableRows = payments.map((payment) => `
       <tr id="payment_${payment.id}">
         <td>${payment.student_name}</td>
         <td>${payment.student_grade}</td>
@@ -28,7 +28,7 @@ function buildParentsPendingPayments(user, paymentRepository) {
       </tr>
     `);
 
-    welcomeMessageDiv.innerHTML = `
+  welcomeMessageDiv.innerHTML = `
     <h1 style="text-align: center; color: gray">
                   Welcome To Payment Management
                 </h1>
@@ -38,7 +38,7 @@ function buildParentsPendingPayments(user, paymentRepository) {
                 <br /><br />
     `;
 
-    bodyDiv.innerHTML = `
+  bodyDiv.innerHTML = `
     <table id="t01">
       <tr>
         <th>Student Name</th>
@@ -51,32 +51,32 @@ function buildParentsPendingPayments(user, paymentRepository) {
     </table>
     `;
 
-    payments.forEach((payment => {
-        let payButton = document.querySelector('#pay_'.concat(payment.id));
-        let errorSpan = document.querySelector('#payment_error'.concat(payment.id));
-        let row = document.querySelector('#payment_'.concat(payment.id));
+  payments.forEach((payment => {
+    let payButton = document.querySelector('#pay_'.concat(payment.id));
+    let errorSpan = document.querySelector('#payment_error'.concat(payment.id));
+    let row = document.querySelector('#payment_'.concat(payment.id));
 
-        payButton.addEventListener('click', () => {
-            errorSpan.innerHTML = '';
-            let paidAmount = document.getElementById('amount_'.concat(payment.id)).value;
-            let paymentType = document.getElementById('payment_method'.concat(payment.id)).value;
+    payButton.addEventListener('click', () => {
+      errorSpan.innerHTML = '';
+      let paidAmount = document.getElementById('amount_'.concat(payment.id)).value;
+      let paymentType = document.getElementById('payment_method'.concat(payment.id)).value;
 
-            if (paidAmount > payment.remaining || paidAmount < 1)
-                errorSpan.innerHTML = 'Error Paid Amount Invalid';
-            else {
-                let remainingAmount = payment.remaining - paidAmount;
-                if (remainingAmount == 0) {
-                    row.parentNode.removeChild(row);
-                    payment.pending = false;
-                    payment.remaining = 0;
-                } else {
-                    let paymentAmount = document.getElementById('amount'.concat(payment.id));
-                    paymentAmount.innerHTML = remainingAmount;
-                    errorSpan.innerHTML = 'Payment Success';
-                    payment.remaining = remainingAmount;
-                }
-                paymentRepository.addNewPayment(payment, paymentType, paidAmount);
-            }
-        });
-    }))
+      if (paidAmount > payment.remaining || paidAmount < 1)
+        errorSpan.innerHTML = 'Error Paid Amount Invalid';
+      else {
+        let remainingAmount = payment.remaining - paidAmount;
+        if (remainingAmount == 0) {
+          row.parentNode.removeChild(row);
+          payment.pending = false;
+          payment.remaining = 0;
+        } else {
+          let paymentAmount = document.getElementById('amount'.concat(payment.id));
+          paymentAmount.innerHTML = remainingAmount;
+          errorSpan.innerHTML = 'Payment Success';
+          payment.remaining = remainingAmount;
+        }
+        paymentRepository.addNewPayment(payment, paymentType, paidAmount);
+      }
+    });
+  }))
 }

@@ -7,7 +7,8 @@
         "final": false,
         "parent_name": "parent 1",
         "parent_email": "parent@gmail.com",
-        "comment": ""
+        "comment": "",
+        "grade": 1
     },
     {
         "id": 2,
@@ -17,7 +18,8 @@
         "child_id": 2,
         "parent_name": "parent 1",
         "parent_email": "parent@gmail.com",
-        "comment": ""
+        "comment": "",
+        "grade": 2
     },
     {
         "id": 3,
@@ -27,16 +29,7 @@
         "parent_name": "parent 1",
         "child_id": 3,
         "parent_email": "parent@gmail.com",
-        "comment": ""
-    },
-    {
-        "id": 4,
-        "student_name": "student 4",
-        "status": "pending",
-        "final": false,
-        "parent_name": "parent 1",
-        "child_id": 4,
-        "parent_email": "parent@gmail.com",
-        "comment": ""
+        "comment": "",
+        "grade": 3
     }
 ]

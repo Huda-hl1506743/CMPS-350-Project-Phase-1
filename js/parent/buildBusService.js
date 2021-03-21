@@ -84,7 +84,6 @@ function buildParentBusService(user, busRepository, userRepository) {
 
     selectOptions = buildSelectOptions(childrenWithNoServices)
     document.getElementById('studentId').innerHTML = selectOptions.join('');
-
     requests.push({
       "id": requests.length + 1,
       "student_name": selectedChild.name,
@@ -93,7 +92,8 @@ function buildParentBusService(user, busRepository, userRepository) {
       "final": false,
       "parent_name": user.name,
       "parent_email": user.email,
-      "comment": ''
+      "comment": '',
+      "student_grade": selectedChild.grade
     });
     busRepository.setRequests(requests);
 

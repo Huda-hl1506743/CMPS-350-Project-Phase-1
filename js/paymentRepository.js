@@ -7,6 +7,10 @@ export function getPendingPayments() {
     return payments;
 }
 
+export function setPendingPayments(payments) {
+    localStorage.setItem('payments', JSON.stringify(payments));
+}
+
 export function addNewPayment(paymentUpdated, type, amount) {
     let payments = [];
     if (localStorage.getItem('payments'))

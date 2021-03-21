@@ -1,14 +1,31 @@
 ////////////////////////////////////////
 //Principle Bus Service Builder
 
-function acceptRequest(id, busRepository) {
+function acceptRequest(id, busRepository, paymentRepository) {
   let requests = busRepository.busRepository();
+  let payments = paymentRepository.getPendingPayments();
+
+
   requests.forEach((request) => {
     if (request.id === id) {
       request.final = true;
       request.status = 'Accepted'
+      payments.push({
+        "id": payments.length + 1,
+        "student_id": request.child_id,
+        "type": "Transportation",
+        "pending": true,
+        "parent_name": request.parent_name,
+        "parent_email": request.parent_email,
+        "student_name": request.student_name,
+        "student_grade": request.student_grade,
+        "remaining": 3000,
+        "amount": 3000,
+        "date": new Date()
+      });
     }
   });
+  paymentRepository.setPendingPayments(payments);
   busRepository.setRequests(requests);
   let actionTD = document.querySelector('#request_'.concat(id));
   actionTD.innerHTML = 'Accepted';
@@ -38,7 +55,7 @@ function addComment(id, busRepository) {
   busRepository.setRequests(requests);
 }
 
-function buildBusServicePayment(busRepository) {
+function buildBusServicePayment(busRepository, paymentRepository) {
   let welcomeMessageDiv = document.querySelector('#welcome');
   let requests = busRepository.busRepository();
   requests = requests.filter((request) => { return request.final === false });
@@ -85,7 +102,7 @@ function buildBusServicePayment(busRepository) {
     let rejectBtn = document.querySelector('#rejectRequest_'.concat(request.id));
     let addCommentBtn = document.querySelector('#comment_'.concat(request.id));
 
-    acceptBtn.addEventListener('click', () => { acceptRequest(request.id, busRepository) });
+    acceptBtn.addEventListener('click', () => { acceptRequest(request.id, busRepository, paymentRepository) });
     rejectBtn.addEventListener('click', () => { rejectRequest(request.id, busRepository) });
     addCommentBtn.addEventListener('click', () => { addComment(request.id, busRepository) });
   }))
