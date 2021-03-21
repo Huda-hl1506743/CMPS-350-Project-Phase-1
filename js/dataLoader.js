@@ -4,13 +4,13 @@
 
 const initData = async () => {
     let users = await fetchData('../data/users.json');
-    let bussService = await fetchData('../data/bussService.json');
+    let busService = await fetchData('../data/busService.json');
     let payment_bill = await fetchData('../data/payment_bill.json');
     let payments = await fetchData('../data/payments.json');
 
     localStorage.setItem('users', JSON.stringify(users));
     localStorage.setItem('payments', JSON.stringify(payments));
-    localStorage.setItem('buss', JSON.stringify(bussService));
+    localStorage.setItem('bus', JSON.stringify(busService));
     localStorage.setItem('payment_bill', JSON.stringify(payment_bill));
 };
 

@@ -1,6 +1,6 @@
 import * as userRepository from './userRepository.js';
 import * as paymentRepository from './paymentRepository.js';
-import * as bussRepository from './bussRepository.js';
+import * as busRepository from './busRepository.js';
 import initData from './dataLoader.js';
 
 //SELECT DOM
@@ -45,7 +45,7 @@ let init = () => {
                   <a style="cursor: pointer" id="pendingPayments">Pending Payments</a>
                 </li>
                 <li style="float: left">
-                  <a style="cursor: pointer" id="bussServices">Buss Service</a>
+                  <a style="cursor: pointer" id="busServices">Bus Service</a>
                 </li>
                 <li style="float: left">
                   <a style="cursor: pointer" id="receivedPaymentsReport">
@@ -86,7 +86,7 @@ let init = () => {
                 <a style="cursor: pointer" id="pendingPayments">Pending Payments</a>
               </li>
               <li style="float: left">
-                <a style="cursor: pointer" id="bussServices">Buss Service</a>
+                <a style="cursor: pointer" id="busServices">Bus Service</a>
               </li>
               <li style="float: left">
                 <a style="cursor: pointer" id="paymentHistory">Payment History</a>
@@ -123,14 +123,14 @@ let init = () => {
 function buildPrincipleNavBar() {
   //NAVBAR BUTTONS
   let pendingPaymentsButton = document.querySelector('#pendingPayments');
-  let bussServicesButton = document.querySelector('#bussServices');
+  let busServicesButton = document.querySelector('#busServices');
   let receivedPaymentsReportButton = document.querySelector('#receivedPaymentsReport');
   let pendingPaymentsReportButton = document.querySelector('#pendingPaymentsReport');
   let duePaymentsButton = document.querySelector('#duePayments');
 
 
   pendingPaymentsButton.addEventListener("click", () => buildPendingPayments(paymentRepository));
-  bussServicesButton.addEventListener("click", () => buildBussServicePayment(bussRepository));
+  busServicesButton.addEventListener("click", () => buildBusServicePayment(busRepository));
   receivedPaymentsReportButton.addEventListener('click', () => buildReceivedPaymentsReport(paymentRepository));
   pendingPaymentsReportButton.addEventListener('click', () => buildPendingPaymentsReport(paymentRepository));
   duePaymentsButton.addEventListener('click', () => buildDuoPayments(paymentRepository));
@@ -138,7 +138,7 @@ function buildPrincipleNavBar() {
 
 //buildPendingPayments ==> /principle/buildPendingPayments.js
 
-//buildBussServicePayment ==> /principle/buildBussServicePayment.js
+//buildBusServicePayment ==> /principle/buildBusServicePayment.js
 
 //buildReceivedPaymentsReport ==> /principle/buildPendingPaymentsReport.js
 
@@ -154,18 +154,18 @@ function buildPrincipleNavBar() {
 function buildParentNavBar(user) {
   //NAVBAR BUTTONS
   let pendingPaymentsButton = document.querySelector('#pendingPayments');
-  let bussServicesButton = document.querySelector('#bussServices');
+  let busServicesButton = document.querySelector('#busServices');
   let paymentHistoryButton = document.querySelector('#paymentHistory');
 
   pendingPaymentsButton.addEventListener('click', () => buildParentsPendingPayments(user, paymentRepository));
-  bussServicesButton.addEventListener('click', () => buildParentBussService(user, bussRepository, userRepository));
+  busServicesButton.addEventListener('click', () => buildParentBusService(user, busRepository, userRepository));
   paymentHistoryButton.addEventListener('click', () => buildParentPaymentHistory(user, paymentRepository));
 }
 
 
 // buildParentsPendingPayments ==> /parent/buildPendingPayments.js
 
-// buildParentBussService ==> /parent/buildBussService.js
+// buildParentBusService ==> /parent/buildBusService.js
 
 // buildParentPaymentHistory ==> /parent/buildPaymentHistory.js
 
