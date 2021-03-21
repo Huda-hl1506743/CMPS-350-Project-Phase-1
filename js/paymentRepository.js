@@ -23,6 +23,7 @@ export function addNewPayment(paymentUpdated, type, amount) {
         "id": payments.length + 1,
         "payment_id": paymentUpdated.id,
         "email": paymentUpdated.parent_email,
+        "category": paymentUpdated.type,
         "student": paymentUpdated.student_name,
         "amount": amount,
         "remaining": paymentUpdated.remaining,
