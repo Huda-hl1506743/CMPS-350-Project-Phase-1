@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "name": "parent 1",
+        "email": "parent@gmail.com",
+        "type": "parent",
+        "password": "1234567890",
+        "children": [
+            {
+                "id": 1,
+                "name": "child 1",
+                "grade": "KG",
+                "age": "2"
+            },
+            {
+                "id": 2,
+                "name": "child 2",
+                "grade": "4",
+                "age": "12"
+            },
+            {
+                "id": 3,
+                "name": "child 3",
+                "grade": "12",
+                "age": "18"
+            },
+            {
+                "id": 4,
+                "name": "child 4",
+                "grade": "9",
+                "age": "162"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "principle 1",
+        "email": "principle@gmail.com",
+        "type": "principle",
+        "password": "1234567890"
+    }
+]

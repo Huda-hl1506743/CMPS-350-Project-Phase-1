@@ -1,0 +1,80 @@
+[
+    {
+        "id": 1,
+        "student_id": 1,
+        "type": "Tuition",
+        "pending": true,
+        "parent_name": "parent 1",
+        "parent_email": "parent1@gmail.com",
+        "student_name": "student 1",
+        "student_grade": 3,
+        "remaining": 1000,
+        "amount": 1000,
+        "date": "2021-03-21T17:58:57.033Z"
+    },
+    {
+        "id": 2,
+        "student_id": 4,
+        "type": "Tuition",
+        "pending": true,
+        "parent_name": "parent 1",
+        "parent_email": "parent1@gmail.com",
+        "student_name": "student 1",
+        "student_grade": 3,
+        "remaining": 1000,
+        "amount": 1000,
+        "date": "2021-03-21T17:58:57.033Z"
+    },
+    {
+        "id": 3,
+        "student_id": 3,
+        "type": "Tuition",
+        "pending": true,
+        "parent_name": "parent 1",
+        "parent_email": "parent@gmail.com",
+        "student_name": "student 1",
+        "student_grade": 3,
+        "remaining": 1000,
+        "amount": 1000,
+        "date": "2021-03-21T17:58:57.033Z"
+    },
+    {
+        "id": 4,
+        "student_id": 2,
+        "type": "Tuition",
+        "pending": true,
+        "parent_name": "parent 1",
+        "parent_email": "parent@gmail.com",
+        "student_name": "student 1",
+        "student_grade": 3,
+        "remaining": 1000,
+        "amount": 1000,
+        "date": "2021-03-21T17:58:57.033Z"
+    },
+    {
+        "id": 5,
+        "student_id": 2,
+        "type": "Tuition",
+        "pending": true,
+        "parent_name": "parent 1",
+        "parent_email": "parent@gmail.com",
+        "student_name": "student 1",
+        "student_grade": 3,
+        "remaining": 1000,
+        "amount": 1000,
+        "date": "2021-03-21T17:58:57.033Z"
+    },
+    {
+        "id": 6,
+        "student_id": 1,
+        "type": "Transportation",
+        "pending": true,
+        "parent_name": "parent 1",
+        "parent_email": "parent@gmail.com",
+        "student_name": "student1",
+        "student_grade": 3,
+        "remaining": 1000,
+        "amount": 1000,
+        "date": "2021-03-21T17:58:57.033Z"
+    }
+]
