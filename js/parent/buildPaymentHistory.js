@@ -33,7 +33,7 @@ function buildParentPaymentHistory(user, paymentRepository) {
         <input type="date" id="startDate">
         <label>End Date:</label>
         <input type="date" id="endDate"">
-        <a class="filter-btn" id="filter" style="cursor: pointer">Filter</a>
+        <a class="actionButton btn-primary btn" id="filter" style="cursor: pointer">Filter</a>
       </div>
       <table id="t01">
         <tr>
