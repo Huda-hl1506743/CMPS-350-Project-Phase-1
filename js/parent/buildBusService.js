@@ -28,33 +28,14 @@ function buildRows(array) {
 
 
 function buildBusServiceBody(selectOptions, TableRows) {
-  bodyDiv.innerHTML = `
-    <div>
-      <div class="filter">
-        <label>Request Service For Student:</label>
-        <select id="studentId" class="form-select" style="width: 100px">
-        ${selectOptions.join('')}
-        </select>
-        <a class="actionButton btn-primary btn" style="cursor: pointer" id="requestService">Request</a>
-      </div>
-      <table id="t01">
-        <tr>
-          <th>Parent Name</th>
-          <th>Parent Email</th>
-          <th>Student Name</th>
-          <th>Status</th>
-          <th>Comments</th>
-        </tr>
-        ${TableRows.join('')}
-      </table>
-    </div>
-    `;
+  document.getElementById('studentId').innerHTML = selectOptions.join('');
+  document.getElementById('tableBody').innerHTML = TableRows.join('');
 }
 
 function buildParentBusService(user, busRepository, userRepository) {
   let welcomeMessageDiv = document.querySelector('#welcome');
   let requests = busRepository.busRepository();
-  requests.filter((request) => { return request.parent_email === user.email });
+  requests = requests.filter((request) => { return (request.parent_email === user.email) });
   let users = userRepository.getUsers();
   let childrenWithService = requests.map(u => u.child_id);
   user = users.filter(u => u.email === user.email)[0];
@@ -72,6 +53,28 @@ function buildParentBusService(user, busRepository, userRepository) {
                   Bus Management
                 </p>
                 <br /><br />
+    `;
+  bodyDiv.innerHTML = `
+    <div>
+      <div class="filter">
+        <label>Request Service For Student:</label>
+        <select id="studentId" class="form-select" style="width: 100px">
+
+        </select>
+        <a class="actionButton btn-primary btn" style="cursor: pointer" id="requestService">Request</a>
+      </div>
+      <table id="t01">
+        <tr>
+          <th>Parent Name</th>
+          <th>Parent Email</th>
+          <th>Student Name</th>
+          <th>Status</th>
+          <th>Comments</th>
+        </tr>
+        <tbody id="tableBody">
+        </tbody>
+      </table>
+    </div>
     `;
 
   buildBusServiceBody(selectOptions, TableRows);
@@ -96,6 +99,7 @@ function buildParentBusService(user, busRepository, userRepository) {
       "student_grade": selectedChild.grade
     });
     busRepository.setRequests(requests);
+    requests = requests.filter((request) => { return (request.parent_email === user.email) });
 
     TableRows = buildRows(requests);
 
