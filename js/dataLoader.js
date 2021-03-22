@@ -1,5 +1,5 @@
 //This File is responsible for loading all Json Data into local storage for a first run.
-
+//Please note that some data date range go back to 2020
 
 
 const initData = async () => {
