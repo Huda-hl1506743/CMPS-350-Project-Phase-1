@@ -65,7 +65,7 @@ let init = () => {
                 <li style="float: right">
                   <a style="cursor: pointer" id="logout">Logout</a>
                 </li>
-                <li style="float: right"><a id="userEmail"></a></li>
+                <li style="float: right"><a id="userEmail">Welcome ${User.email}</a></li>
               </ul>
             </div>
             <div align="center" id="welcome">
@@ -94,7 +94,7 @@ let init = () => {
               <li style="float: right">
                 <a style="cursor: pointer" id="logout">Logout</a>
               </li>
-              <li style="float: right"><a id="userEmail"></a></li>
+              <li style="float: right"><a id="userEmail">Welcome ${User.email}</a></li>
             </ul>
           </div>
           <div align="center" id="welcome">
