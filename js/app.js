@@ -49,12 +49,12 @@ let init = () => {
                 </li>
                 <li style="float: left">
                   <a style="cursor: pointer" id="receivedPaymentsReport">
-                    Get Received Payment Report
+                    Received Payment Report
                   </a>
                 </li>
                 <li style="float: left">
                   <a style="cursor: pointer" id="pendingPaymentsReport">
-                    Get Pending Payment Report
+                    Pending Payment Report
                   </a>
                 </li>
                 <li style="float: left">
