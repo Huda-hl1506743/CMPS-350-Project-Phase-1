@@ -18,7 +18,7 @@ function buildPendingPaymentsReport(paymentRepository) {
         <td>${payment.parent_email}</td>
         <td>${payment.student_name}</td>
         <td>${payment.student_grade}</td>
-        <td>${payment.type} Fee</td>
+        <td>${payment.type == 'Duo Payment' ? (payment.type + '(' + new Date(payment.duoDate).toDateString() + ')') : (payment.type)}</td>
         <td>${payment.remaining}</td>
         <td>${payment.amount}</td>
       </tr>
@@ -47,9 +47,10 @@ function buildPendingPaymentsReport(paymentRepository) {
         <label>Filter Data By Category:</label>
         <select id="filterType" class="form-select w-40">
           <option value="all">All</option>
-          <option value="Tuition">Tuition Fee</option>
-          <option value="Transportation">Transportation Fee</option>
-          <option value="Admission">Admission Fee</option>
+          <option value="Tuition Fee">Tuition Fee</option>
+          <option value="Transportation Fee">Transportation Fee</option>
+          <option value="Admission Fee">Admission Fee</option>
+          <option value="Duo Payment">Duo Payment</option>
         </select>
         <a class="actionButton btn-primary btn" style="cursor: pointer" id="filter">Filter</a>
       </div>
@@ -93,7 +94,7 @@ function buildPendingPaymentsReport(paymentRepository) {
           <td>${payment.parent_email}</td>
           <td>${payment.student_name}</td>
           <td>${payment.student_grade}</td>
-          <td>${payment.type} Fee</td>
+          <td>${payment.type == 'Duo Payment' ? (payment.type + '(' + new Date(payment.duoDate).toDateString() + ')') : (payment.type)}</td>
           <td>${payment.remaining}</td>
           <td>${payment.amount}</td>
         </tr>

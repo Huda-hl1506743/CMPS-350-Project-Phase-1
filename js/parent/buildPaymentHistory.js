@@ -51,19 +51,10 @@ function buildParentPaymentHistory(user, paymentRepository) {
     `;
 
   let date = new Date();
-  let day = date.getDate();
-  let month = date.getMonth() + 1;
-  let year = date.getFullYear();
-
-  if (month < 10) month = "0" + month;
-  if (day < 10) day = "0" + day;
-
-  let today = year + "-" + month + "-" + day;
-
   let startDate = document.getElementById('startDate');
-  startDate.value = today;
+  startDate.value = date.toISOString().split('T')[0];
   let endDate = document.getElementById('endDate');
-  endDate.value = today;
+  endDate.value = date.toISOString().split('T')[0];
 
   //Filter Function
   document.querySelector('#filter').addEventListener('click', () => {

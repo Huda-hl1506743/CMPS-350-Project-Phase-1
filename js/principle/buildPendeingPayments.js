@@ -16,7 +16,7 @@ function buildPendingPayments(paymentRepository) {
         <td>${payment.parent_email}</td>
         <td>${payment.student_name}</td>
         <td>${payment.student_grade}</td>
-        <td>${payment.type} Fee</td>
+        <td>${payment.type == 'Duo Payment' ? (payment.type + '(' + new Date(payment.duoDate).toDateString() + ')') : (payment.type)}</td>
         <td>${payment.remaining}</td>
         <td>${payment.amount}</td>
       </tr>

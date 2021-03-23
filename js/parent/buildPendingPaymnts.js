@@ -9,7 +9,7 @@ function buildParentsPendingPayments(user, paymentRepository) {
       <tr id="payment_${payment.id}">
         <td>${payment.student_name}</td>
         <td>${payment.student_grade}</td>
-        <td>${payment.type} Fee</td>
+        <td>${payment.type == 'Duo Payment' ? (payment.type + '(' + new Date(payment.duoDate).toDateString() + ')') : (payment.type)}</td>
         <td id="amount${payment.id}">${payment.remaining}</td>
         <td>
           <div>

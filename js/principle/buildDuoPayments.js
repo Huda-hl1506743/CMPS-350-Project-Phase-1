@@ -13,13 +13,12 @@ function buildDuoPayments(paymentRepository) {
     //Getting Current Date Payments
     let data = payments.filter(payment => {
         let time = new Date(payment.date).getTime();
-
-        return (firstDay <= time && time < lastDay && payment.type != 'Duo Payment');
+        return (firstDay <= time && time < lastDay && payment.type != 'Duo Payment' && payment.pending != false);
     });
     //Getting Payments not to be transferred into Duo Payments
     let restOfData = payments.filter(payment => {
         let time = new Date(payment.date).getTime();
-        return (firstDay > time || time >= lastDay || payment.type == 'Duo Payment');
+        return (firstDay > time || time >= lastDay || payment.type == 'Duo Payment' || payment.pending == false);
     });
 
     let amount = 0;
@@ -50,7 +49,7 @@ function buildDuoPayments(paymentRepository) {
                 parent_name: currentPayment.parent_name,
                 parent_email: currentPayment.parent_email,
                 student_grade: currentPayment.student_grade,
-                date: currentPayment.date,
+                date: new Date(),
                 type: 'Duo Payment'
             });
         }
@@ -67,7 +66,7 @@ function buildDuoPayments(paymentRepository) {
         <td>${payment.parent_email}</td>
         <td>${payment.student_name}</td>
         <td>${payment.student_grade}</td>
-        <td>${new Date(payment.date).toDateString()}</td>
+        <td>${payment.date.toDateString()}</td>
         <td>${payment.remaining}</td>
         <td>${payment.amount}</td>
       </tr>
@@ -137,16 +136,17 @@ function buildDuoPayments(paymentRepository) {
     document.querySelector('#filter').addEventListener('click', () => {
         let sd = new Date(startDate.value).getTime();
         let ed = new Date(endDate.value).getTime() + parseInt("86394000‬");
-
+        payments = paymentRepository.getPendingPayments();
+        //Getting Current Date Payments
         data = payments.filter(payment => {
             let time = new Date(payment.date).getTime();
-
-            return (sd <= time && time < ed && payment.type != 'Duo Payment');
+            return (sd <= time && time < ed && payment.type != 'Duo Payment' && payment.pending == true);
         });
+
         //Getting Payments not to be transferred into Duo Payments
         restOfData = payments.filter(payment => {
             let time = new Date(payment.date).getTime();
-            return (sd > time || time >= ed || payment.type == 'Duo Payment');
+            return (sd > time || time >= ed || payment.type == 'Duo Payment' || payment.pending == false);
         });
 
         let amount = 0;
@@ -177,7 +177,7 @@ function buildDuoPayments(paymentRepository) {
                     parent_name: currentPayment.parent_name,
                     parent_email: currentPayment.parent_email,
                     student_grade: currentPayment.student_grade,
-                    date: currentPayment.date,
+                    date: new Date(),
                     type: 'Duo Payment'
                 });
             }
@@ -193,7 +193,7 @@ function buildDuoPayments(paymentRepository) {
             <td>${payment.parent_email}</td>
             <td>${payment.student_name}</td>
             <td>${payment.student_grade}</td>
-            <td>${new Date(payment.date).toDateString()}</td>
+            <td>${payment.date.toDateString()}</td>
             <td>${payment.remaining}</td>
             <td>${payment.amount}</td>
           </tr>
@@ -217,16 +217,18 @@ function buildDuoPayments(paymentRepository) {
         let duoDate = new Date(duoDateInput.value);
         let sd = new Date(startDate.value).getTime();
         let ed = new Date(endDate.value).getTime() + parseInt("86394000‬");
+        payments = paymentRepository.getPendingPayments();
 
+        //Getting Current Date Payments
         data = payments.filter(payment => {
             let time = new Date(payment.date).getTime();
-
-            return (sd <= time && time < ed && payment.type != 'Duo Payment');
+            return (sd <= time && time < ed && payment.type != 'Duo Payment' && payment.pending != false);
         });
+        console.log(data);
         //Getting Payments not to be transferred into Duo Payments
         restOfData = payments.filter(payment => {
             let time = new Date(payment.date).getTime();
-            return (sd > time || time >= ed || payment.type == 'Duo Payment');
+            return (sd > time || time >= ed || payment.type == 'Duo Payment' || payment.pending == false);
         });
 
         let amount = 0;
@@ -257,7 +259,7 @@ function buildDuoPayments(paymentRepository) {
                     parent_name: currentPayment.parent_name,
                     parent_email: currentPayment.parent_email,
                     student_grade: currentPayment.student_grade,
-                    date: currentPayment.date,
+                    date: new Date(),
                     duoDate: duoDate,
                     type: 'Duo Payment'
                 });
@@ -275,7 +277,7 @@ function buildDuoPayments(paymentRepository) {
             <td>${payment.parent_email}</td>
             <td>${payment.student_name}</td>
             <td>${payment.student_grade}</td>
-            <td>${new Date(payment.date).toDateString()}</td>
+            <td>${payment.date.toDateString()}</td>
             <td>${payment.remaining}</td>
             <td>${payment.amount}</td>
           </tr>

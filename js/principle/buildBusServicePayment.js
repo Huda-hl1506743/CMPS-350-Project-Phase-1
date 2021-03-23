@@ -13,7 +13,7 @@ function acceptRequest(id, busRepository, paymentRepository) {
       payments.push({
         "id": payments.length + 1,
         "student_id": request.child_id,
-        "type": "Transportation",
+        "type": "Transportation Fee",
         "pending": true,
         "parent_name": request.parent_name,
         "parent_email": request.parent_email,
@@ -21,6 +21,7 @@ function acceptRequest(id, busRepository, paymentRepository) {
         "student_grade": request.student_grade,
         "remaining": 3000,
         "amount": 3000,
+        "duoDate": null,
         "date": new Date()
       });
     }
@@ -106,18 +107,4 @@ function buildBusServicePayment(busRepository, paymentRepository) {
     rejectBtn.addEventListener('click', () => { rejectRequest(request.id, busRepository) });
     addCommentBtn.addEventListener('click', () => { addComment(request.id, busRepository) });
   }))
-}
-
-function buildPaymentRows(array) {
-  return array.map((payment) => `
-    <tr>
-      <td>${payment.student}</td>
-      <td>${payment.email}</td>
-      <td>${payment.type}</td>
-      <td>${payment.category} Fee</td>
-      <td>${payment.amount}</td>
-      <td>${payment.remaining}</td>
-      <td>${new Date(payment.date).toDateString()}</td>
-    </tr>
-  `);
 }
