@@ -2,7 +2,7 @@
     {
         "id": 1,
         "student_id": 1,
-        "type": "Tuition",
+        "type": "Tuition Fee",
         "pending": false,
         "parent_name": "Charlie Cominotti",
         "parent_email": "parent1@gmail.com",
@@ -10,12 +10,13 @@
         "student_grade": "6",
         "remaining": 0,
         "amount": 5040,
-        "date": "2020-02-21T00:00:00.033Z"
+        "date": "2020-02-21T00:00:00.033Z",
+        "duoDate": null
     },
     {
         "id": 2,
         "student_id": 2,
-        "type": "Tuition",
+        "type": "Tuition Fee",
         "pending": true,
         "parent_name": "Charlie Cominotti",
         "parent_email": "parent1@gmail.com",
@@ -23,12 +24,13 @@
         "student_grade": "11",
         "remaining": 295,
         "amount": 8295,
-        "date": "2021-01-21T00:00:00.033Z"
+        "date": "2021-01-21T00:00:00.033Z",
+        "duoDate": null
     },
     {
         "id": 3,
         "student_id": 3,
-        "type": "Tuition",
+        "type": "Tuition Fee",
         "pending": true,
         "parent_name": "Wilmar Barnicott",
         "parent_email": "parent2@gmail.com",
@@ -36,12 +38,13 @@
         "student_grade": "5",
         "remaining": 2540,
         "amount": 5040,
-        "date": "2021-03-21T00:00:00.033Z"
+        "date": "2021-03-21T00:00:00.033Z",
+        "duoDate": null
     },
     {
         "id": 4,
         "student_id": 4,
-        "type": "Admission",
+        "type": "Admission Fee",
         "pending": false,
         "parent_name": "Wilmar Barnicott",
         "parent_email": "parent2@gmail.com",
@@ -49,12 +52,13 @@
         "student_grade": "3",
         "remaining": 0,
         "amount": 268,
-        "date": "2020-12-21T00:00:00.033Z"
+        "date": "2020-12-21T00:00:00.033Z",
+        "duoDate": null
     },
     {
         "id": 5,
         "student_id": 4,
-        "type": "Tuition",
+        "type": "Tuition Fee",
         "pending": true,
         "parent_name": "Wilmar Barnicott",
         "parent_email": "parent2@gmail.com",
@@ -62,12 +66,13 @@
         "student_grade": "3",
         "remaining": 3777,
         "amount": 4777,
-        "date": "2021-01-01T00:00:00.033Z"
+        "date": "2021-01-01T00:00:00.033Z",
+        "duoDate": null
     },
     {
         "id": 6,
         "student_id": 5,
-        "type": "Tuition",
+        "type": "Tuition Fee",
         "pending": true,
         "parent_name": "Marchelle Yvens",
         "parent_email": "parent3@gmail.com",
@@ -75,12 +80,13 @@
         "student_grade": "8",
         "remaining": 5040,
         "amount": 5040,
-        "date": "2021-02-21T00:00:00.033Z"
+        "date": "2021-02-21T00:00:00.033Z",
+        "duoDate": null
     },
     {
         "id": 7,
         "student_id": 6,
-        "type": "Tuition",
+        "type": "Tuition Fee",
         "pending": true,
         "parent_name": "Marchelle Yvens",
         "parent_email": "parent3@gmail.com",
@@ -88,12 +94,13 @@
         "student_grade": "1",
         "remaining": 4777,
         "amount": 4777,
-        "date": "2021-03-21T00:00:00.033Z"
+        "date": "2021-03-21T00:00:00.033Z",
+        "duoDate": null
     },
     {
         "id": 8,
         "student_id": 7,
-        "type": "Tuition",
+        "type": "Tuition Fee",
         "pending": true,
         "parent_name": "Felic Ripper",
         "parent_email": "parent4@gmail.com",
@@ -101,12 +108,13 @@
         "student_grade": "KG",
         "remaining": 252,
         "amount": 4252,
-        "date": "2020-01-21T00:00:00.033Z"
+        "date": "2020-01-21T00:00:00.033Z",
+        "duoDate": null
     },
     {
         "id": 9,
         "student_id": 7,
-        "type": "Admission",
+        "type": "Admission Fee",
         "pending": false,
         "parent_name": "Felic Ripper",
         "parent_email": "parent4@gmail.com",
@@ -114,12 +122,13 @@
         "student_grade": "KG",
         "remaining": 0,
         "amount": 214,
-        "date": "2021-02-21T00:00:00.033Z"
+        "date": "2021-02-21T00:00:00.033Z",
+        "duoDate": null
     },
     {
         "id": 10,
         "student_id": 8,
-        "type": "Admission",
+        "type": "Admission Fee",
         "pending": false,
         "parent_name": "Felic Ripper",
         "parent_email": "parent4@gmail.com",
@@ -127,12 +136,13 @@
         "student_grade": "10",
         "remaining": 0,
         "amount": 428,
-        "date": "2021-02-21T00:00:00.033Z"
+        "date": "2021-02-21T00:00:00.033Z",
+        "duoDate": null
     },
     {
         "id": 11,
         "student_id": 8,
-        "type": "Tuition",
+        "type": "Tuition Fee",
         "pending": true,
         "parent_name": "Felic Ripper",
         "parent_email": "parent4@gmail.com",
@@ -140,12 +150,13 @@
         "student_grade": "10",
         "remaining": 490,
         "amount": 6090,
-        "date": "2020-12-21T00:00:00.033Z"
+        "date": "2020-12-21T00:00:00.033Z",
+        "duoDate": null
     },
     {
         "id": 12,
         "student_id": 7,
-        "type": "Transportation",
+        "type": "Transportation Fee",
         "pending": true,
         "parent_name": "Felic Ripper",
         "parent_email": "parent4@gmail.com",
@@ -153,12 +164,13 @@
         "student_grade": "KG",
         "remaining": 800,
         "amount": 3000,
-        "date": "2021-01-22T11:54:31.866Z"
+        "date": "2021-01-22T11:54:31.866Z",
+        "duoDate": null
     },
     {
         "id": 13,
         "student_id": 4,
-        "type": "Transportation",
+        "type": "Transportation Fee",
         "pending": true,
         "parent_name": "Wilmar Barnicott",
         "parent_email": "parent2@gmail.com",
@@ -166,12 +178,13 @@
         "student_grade": "3",
         "remaining": 1000,
         "amount": 3000,
-        "date": "2021-02-22T11:54:53.900Z"
+        "date": "2021-02-22T11:54:53.900Z",
+        "duoDate": null
     },
     {
         "id": 14,
         "student_id": 1,
-        "type": "Transportation",
+        "type": "Transportation Fee",
         "pending": false,
         "parent_name": "Charlie Cominotti",
         "parent_email": "parent1@gmail.com",
@@ -179,6 +192,7 @@
         "student_grade": "6",
         "remaining": 0,
         "amount": 3000,
-        "date": "2021-03-22T11:58:51.364Z"
+        "date": "2021-03-22T11:58:51.364Z",
+        "duoDate": null
     }
 ]
