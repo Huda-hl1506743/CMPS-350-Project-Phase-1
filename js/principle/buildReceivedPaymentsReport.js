@@ -30,7 +30,6 @@ function buildReceivedPaymentsReport(paymentRepository) {
   //Getting Current Date Payments
   let data = payments.filter(payment => {
     let time = new Date(payment.date).getTime();
-
     return (firstDay <= time && time < lastDay);
   });
 
